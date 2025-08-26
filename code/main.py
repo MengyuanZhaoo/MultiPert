@@ -21,16 +21,24 @@ from utils import set_seed
 
 
 def main(file_path, name, out_path, epochs):
+    """ Main function to run MultiPerturb model.
+    Args:
+        file_path (str): Path to the directory containing the input data files.
+        name (str): Name of the dataset.
+        out_path (str): Path to the directory to save the output files.
+        epochs (int): Number of epochs to train the model.
+    Returns:
+        None
+    """
     set_seed(1)
-    device = 'cpu'
-    # device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    # if torch.cuda.is_available():
-    #     if torch.cuda.device_count() > 1:
-    #         print(f"Using {torch.cuda.device_count()} GPUs!")
-    #     else:
-    #         print("Using 1 GPU!")
-    # else:
-    #     print("Using CPU!")
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    if torch.cuda.is_available():
+        if torch.cuda.device_count() > 1:
+            print(f"Using {torch.cuda.device_count()} GPUs!")
+        else:
+            print("Using 1 GPU!")
+    else:
+        print("Using CPU!")
     
 
     file_rna = file_path+'/'+name+'_RNA.h5ad'
